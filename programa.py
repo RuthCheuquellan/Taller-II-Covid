@@ -9,70 +9,28 @@ st.write("Here's our first attempt at using data to create a table:")
 
 
 
-if st.checkbox('Show dataframe'):
-    chart_data = pd.DataFrame(
-        np.random.randn(20, 3),
-        columns=['a', 'b', 'c'])
-
-    st.line_chart(chart_data)
-
-    
-
-map_data = pd.DataFrame(
-    np.random.randn(1000, 2) / [50, 50] + [37.76, -122.4],
-    columns=['lat', 'lon'])
-
-st.map(map_data)
-
-
-url="https://raw.githubusercontent.com/MinCiencia/Datos-COVID19/master/output/producto3/CasosTotalesCumulativo_T.csv"
-c=pd.read_csv(url)
-st.line_chart(c["Maule"])
 
 
 url="https://raw.githubusercontent.com/MinCiencia/Datos-COVID19/master/output/producto61/serie_fallecidos_comuna.csv"
-gu=pd.read_csv(url)
+pero=pd.read_csv(url);
+comuna=pero["Comuna"].unique()
+option = st.selectbox(]#selector que aun esta en proseso
+    'Seleciona comuna',
+     pero["Comuna"].unique())
+#pero12
+
+nuevo=pero["2020-09-07"].unique()#extraigo los datos del dia 7 de septempbre
+                                 #fallecido por comuna pero no muestra las comunas
+st.bar_chart(nuevo)#imprimo el grafico
 
 
+"Tabla fallecidos por comuna"
+url="https://raw.githubusercontent.com/MinCiencia/Datos-COVID19/master/output/producto61/serie_fallecidos_comuna.csv"
+tabla1=pd.read_csv(url);#se leen los datos de la pagina y se guardan en una variable
+tabla1#Imprimo la tabla por pantalla
 
 
-#gu=gu.drop(["CIE 10"],axis=1)
-#gu=gu.drop(["Region"],axis=1)
-#gu
-#countries =gu[""].dropna().unique()
-
-#st.line_chart(gu[gu['Comuna'] == country])
-#gu[gu['Comuna'] == country]
-
-
-
-
-
-left_column, right_column = st.beta_columns(2)
-pressed = left_column.button('Press me?')
-if pressed:
-    right_column.write("Woohoo!")
-
-expander = st.beta_expander("FAQ")
-
-
-ji=gu.drop(["Region","CIE 10"])
-
-values = st.slider('Select a range of values',0.0, 100.0, (25.0, 75.0))
-st.write('Values:', values)
-filas = gu.iloc[6]
-e=0;
-j=0
-nombreC=""
-datosM={"",""}
-nose = gu["Comuna"].unique()
-for i in range(len(filas)):
-    st.write(nombreC)
-    if i==0:
-        nombreC=filas[0]
-    if i>2:
-
-
-    e=e+1
-
-
+"Tabla positividad por comuna"
+url="https://raw.githubusercontent.com/MinCiencia/Datos-COVID19/master/output/producto65/PositividadPorComuna.csv"
+tabla2=pd.read_csv(url);#se leen los datos de la pagina y se guardan en una variable
+tabla2#Imprimo la tabla por pantalla
