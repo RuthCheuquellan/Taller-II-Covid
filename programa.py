@@ -3,34 +3,48 @@ import numpy as np
 import pandas as pd
 import time
 import datetime
+import matplotlib.pyplot as plt
 
 st.title("Titulo de aplicacion");
-st.write("Here's our first attempt at using data to create a table:")
+
+##############################################################################################
+################################      NUEVO CODIGO PRUEVA     ################################
+##############################################################################################
 
 
 
+##############################   CASOS POR COMUNA DE REGION    ################################
+url="https://raw.githubusercontent.com/MinCiencia/Datos-COVID19/master/output/producto38/CasosFallecidosPorComuna.csv"
+ko=pd.read_csv(url)
+ko=ko[ko["Comuna"]!="Total"]
+############################# SELECTOR REGION  ################
+option2 = st.selectbox(
+    'Seleciona Region',
+     ko["Region"].unique())
+url="https://raw.githubusercontent.com/MinCiencia/Datos-COVID19/master/output/producto38/CasosFallecidosPorComuna_std.csv"
+fech =pd.read_csv(url)
+############################ SELECTOR FECHA  ###################
+option3 = st.selectbox(#selector que aun esta en proseso
+    'Seleciona Fecha',
+     fech["Fecha"].unique())
+ko=ko.rename(columns={'Comuna':'index'}).set_index('index')
+h1=ko[ko["Region"]==option2]
+ke=h1[option3]
+############################  GRAFICO DE BARRAS  ##################
+st.bar_chart(ke)
 
-
-url="https://raw.githubusercontent.com/MinCiencia/Datos-COVID19/master/output/producto61/serie_fallecidos_comuna.csv"
+'fffffffff'
+url="https://raw.githubusercontent.com/MinCiencia/Datos-COVID19/master/output/producto38/CasosFallecidosPorComuna_std.csv"
 pero=pd.read_csv(url);
 comuna=pero["Comuna"].unique()
-option = st.selectbox(]#selector que aun esta en proseso
+pero=pero[pero["Comuna"]!="Total"]
+option = st.selectbox(#selector que aun esta en proseso
     'Seleciona comuna',
      pero["Comuna"].unique())
-#pero12
 
-nuevo=pero["2020-09-07"].unique()#extraigo los datos del dia 7 de septempbre
-                                 #fallecido por comuna pero no muestra las comunas
-st.bar_chart(nuevo)#imprimo el grafico
+url="https://raw.githubusercontent.com/MinCiencia/Datos-COVID19/master/output/producto38/CasosFallecidosPorComuna_std.csv"
+ff=pd.read_csv(url)
+ff=ff[ff['Comuna']==option]
+ff=ff.rename(columns={'Fecha':'index'}).set_index('index')
+st.line_chart(ff['Casos fallecidos'])
 
-
-"Tabla fallecidos por comuna"
-url="https://raw.githubusercontent.com/MinCiencia/Datos-COVID19/master/output/producto61/serie_fallecidos_comuna.csv"
-tabla1=pd.read_csv(url);#se leen los datos de la pagina y se guardan en una variable
-tabla1#Imprimo la tabla por pantalla
-
-
-"Tabla positividad por comuna"
-url="https://raw.githubusercontent.com/MinCiencia/Datos-COVID19/master/output/producto65/PositividadPorComuna.csv"
-tabla2=pd.read_csv(url);#se leen los datos de la pagina y se guardan en una variable
-tabla2#Imprimo la tabla por pantalla
